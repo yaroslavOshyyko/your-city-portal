@@ -3,6 +3,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, MenuController, Nav } from 'ionic-angular';
 
 import { News } from '../pages/news/news';
+import { Videos } from '../pages/videos/videos';
 import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -31,7 +32,7 @@ export class MyApp {
       { title: 'Новости', component: News },
       { title: 'Информационный ресурс', component: ListPage },
       { title: 'Досуг', component: ListPage },
-      { title: 'Видео', component: ListPage },
+      { title: 'Видео', component: Videos },
       { title: 'Фото', component: ListPage },
       { title: 'Авторизация', component: ListPage }
     ];

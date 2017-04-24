@@ -4,6 +4,8 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { News } from '../pages/news/news';
+import { HttpModule }    from '@angular/http';
+import { Videos } from '../pages/videos/videos';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/list/list';
 
@@ -14,17 +16,20 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   declarations: [
     MyApp,
     News,
+    Videos,
     ItemDetailsPage,
     ListPage
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     News,
+    Videos,
     ItemDetailsPage,
     ListPage
   ],
