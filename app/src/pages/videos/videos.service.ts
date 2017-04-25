@@ -14,18 +14,17 @@ export class VideoService {
         const CHANNEL_URL = `${API_URL}/channels?part=contentDetails&forUsername=bvo55&key=${API_KEY}`;
     
         return this.http.get(CHANNEL_URL)
-            .toPromise()
-            .then(response => {
+            .flatMap( response => {
                 const playlistId = response.json().items[0].contentDetails.relatedPlaylists.uploads;
                 const PLAYLIST_URL = `${API_URL}/playlistItems?part=snippet&maxResults=10&playlistId=${playlistId}&key=${API_KEY}`;
                 return this.http.get(PLAYLIST_URL)
-                    .toPromise()
-                    .then(response => response.json().items
+            })
+            .map( response => response.json().items
                         .map(video => ({
                             url: `https://www.youtube.com/embed/${video.snippet.resourceId.videoId}`,
                             title: video.snippet.title,
                             desription: video.snippet.description
-                        })));
-            });
+            })))
+            .take(1);    
     }
 }
