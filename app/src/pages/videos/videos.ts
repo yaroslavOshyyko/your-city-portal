@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { VideoService } from './videos.service';
 import { Pipe, PipeTransform } from '@angular/core';
-import { DomSanitizer} from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'videos',
@@ -15,10 +15,14 @@ export class Videos implements PipeTransform{
   
   constructor(private sanitizer: DomSanitizer, private videoService: VideoService) {
     this.videoService.getVideoFromChannel()
-      .then(videos => {
-        this.videos = videos;
-        console.log(this.videos);
-      })
+      .subscribe(
+        videos => {
+          this.videos = videos;
+          console.log(this.videos);
+        },
+        (error) => {
+          console.log(error);
+        });
   }
 
   transform(url: string) {
